@@ -1,0 +1,96 @@
+{
+    "properties": [], 
+    "externalReferences": [], 
+    "innerClasses": [
+        {
+            "properties": [
+                {
+                    "modifiers": [], 
+                    "name": "name", 
+                    "visibility": "PUBLIC", 
+                    "references": [], 
+                    "location": {
+                        "column": 17, 
+                        "line": 7
+                    }, 
+                    "type": "String"
+                }, 
+                {
+                    "modifiers": [], 
+                    "name": "phone", 
+                    "visibility": "PUBLIC", 
+                    "references": [], 
+                    "location": {
+                        "column": 17, 
+                        "line": 8
+                    }, 
+                    "type": "String"
+                }
+            ], 
+            "externalReferences": [], 
+            "innerClasses": [], 
+            "interfaces": [], 
+            "constructors": [
+                {
+                    "modifiers": [], 
+                    "name": "jsonClass", 
+                    "parameters": [], 
+                    "visibility": "PUBLIC", 
+                    "references": [], 
+                    "location": {
+                        "column": 10, 
+                        "line": 10
+                    }, 
+                    "type": null
+                }
+            ], 
+            "namespace": null, 
+            "name": "jsonClass", 
+            "tableDeclaration": {
+                "type": "jsonClass", 
+                "modifiers": [], 
+                "references": [], 
+                "location": {
+                    "column": 8, 
+                    "line": 6
+                }, 
+                "name": "jsonClass"
+            }, 
+            "key": null, 
+            "variables": [], 
+            "id": null, 
+            "methods": []
+        }
+    ], 
+    "interfaces": [], 
+    "constructors": [
+        {
+            "modifiers": [], 
+            "name": "testJson", 
+            "parameters": [], 
+            "visibility": "PUBLIC", 
+            "references": [], 
+            "location": {
+                "column": 9, 
+                "line": 3
+            }, 
+            "type": null
+        }
+    ], 
+    "namespace": null, 
+    "name": "testJson", 
+    "tableDeclaration": {
+        "type": "testJson", 
+        "modifiers": [], 
+        "references": [], 
+        "location": {
+            "column": 27, 
+            "line": 1
+        }, 
+        "name": "testJson"
+    }, 
+    "key": "01pj0000002XaohAAC", 
+    "variables": [], 
+    "id": "01pj0000002XaohAAC", 
+    "methods": []
+}

@@ -1,0 +1,344 @@
+{
+    "properties": [
+        {
+            "modifiers": [
+                "STATIC"
+            ], 
+            "name": "numberItems", 
+            "visibility": "PUBLIC", 
+            "references": [], 
+            "location": {
+                "column": 24, 
+                "line": 3
+            }, 
+            "type": "Integer"
+        }
+    ], 
+    "externalReferences": [], 
+    "innerClasses": [
+        {
+            "properties": [
+                {
+                    "modifiers": [], 
+                    "name": "idq", 
+                    "visibility": "PUBLIC", 
+                    "references": [], 
+                    "location": {
+                        "column": 17, 
+                        "line": 34
+                    }, 
+                    "type": "String"
+                }, 
+                {
+                    "modifiers": [], 
+                    "name": "q", 
+                    "visibility": "PUBLIC", 
+                    "references": [], 
+                    "location": {
+                        "column": 19, 
+                        "line": 35
+                    }, 
+                    "type": "String"
+                }, 
+                {
+                    "modifiers": [], 
+                    "name": "operation", 
+                    "visibility": "PUBLIC", 
+                    "references": [], 
+                    "location": {
+                        "column": 19, 
+                        "line": 36
+                    }, 
+                    "type": "String"
+                }
+            ], 
+            "externalReferences": [], 
+            "innerClasses": [], 
+            "interfaces": [], 
+            "constructors": [], 
+            "namespace": null, 
+            "name": "questionSelected", 
+            "tableDeclaration": {
+                "type": "questionSelected", 
+                "modifiers": [], 
+                "references": [], 
+                "location": {
+                    "column": 8, 
+                    "line": 33
+                }, 
+                "name": "questionSelected"
+            }, 
+            "key": null, 
+            "variables": [], 
+            "id": null, 
+            "methods": []
+        }, 
+        {
+            "properties": [
+                {
+                    "modifiers": [], 
+                    "name": "ida", 
+                    "visibility": "PUBLIC", 
+                    "references": [], 
+                    "location": {
+                        "column": 17, 
+                        "line": 41
+                    }, 
+                    "type": "String"
+                }, 
+                {
+                    "modifiers": [], 
+                    "name": "ido", 
+                    "visibility": "PUBLIC", 
+                    "references": [], 
+                    "location": {
+                        "column": 19, 
+                        "line": 42
+                    }, 
+                    "type": "String"
+                }, 
+                {
+                    "modifiers": [], 
+                    "name": "correct", 
+                    "visibility": "PUBLIC", 
+                    "references": [], 
+                    "location": {
+                        "column": 19, 
+                        "line": 43
+                    }, 
+                    "type": "String"
+                }, 
+                {
+                    "modifiers": [], 
+                    "name": "operation", 
+                    "visibility": "PUBLIC", 
+                    "references": [], 
+                    "location": {
+                        "column": 19, 
+                        "line": 44
+                    }, 
+                    "type": "String"
+                }, 
+                {
+                    "modifiers": [], 
+                    "name": "option", 
+                    "visibility": "PUBLIC", 
+                    "references": [], 
+                    "location": {
+                        "column": 27, 
+                        "line": 45
+                    }, 
+                    "type": "optionSelected"
+                }
+            ], 
+            "externalReferences": [], 
+            "innerClasses": [], 
+            "interfaces": [], 
+            "constructors": [], 
+            "namespace": null, 
+            "name": "answerSelected", 
+            "tableDeclaration": {
+                "type": "answerSelected", 
+                "modifiers": [], 
+                "references": [], 
+                "location": {
+                    "column": 8, 
+                    "line": 40
+                }, 
+                "name": "answerSelected"
+            }, 
+            "key": null, 
+            "variables": [], 
+            "id": null, 
+            "methods": []
+        }, 
+        {
+            "properties": [
+                {
+                    "modifiers": [], 
+                    "name": "ido", 
+                    "visibility": "PUBLIC", 
+                    "references": [], 
+                    "location": {
+                        "column": 17, 
+                        "line": 49
+                    }, 
+                    "type": "String"
+                }, 
+                {
+                    "modifiers": [], 
+                    "name": "option", 
+                    "visibility": "PUBLIC", 
+                    "references": [], 
+                    "location": {
+                        "column": 19, 
+                        "line": 50
+                    }, 
+                    "type": "String"
+                }, 
+                {
+                    "modifiers": [], 
+                    "name": "operation", 
+                    "visibility": "PUBLIC", 
+                    "references": [], 
+                    "location": {
+                        "column": 19, 
+                        "line": 51
+                    }, 
+                    "type": "String"
+                }
+            ], 
+            "externalReferences": [], 
+            "innerClasses": [], 
+            "interfaces": [], 
+            "constructors": [], 
+            "namespace": null, 
+            "name": "optionSelected", 
+            "tableDeclaration": {
+                "type": "optionSelected", 
+                "modifiers": [], 
+                "references": [], 
+                "location": {
+                    "column": 8, 
+                    "line": 48
+                }, 
+                "name": "optionSelected"
+            }, 
+            "key": null, 
+            "variables": [], 
+            "id": null, 
+            "methods": []
+        }
+    ], 
+    "interfaces": [], 
+    "constructors": [
+        {
+            "modifiers": [], 
+            "name": "ShowQuestionsController", 
+            "parameters": [], 
+            "visibility": "PUBLIC", 
+            "references": [], 
+            "location": {
+                "column": 9, 
+                "line": 4
+            }, 
+            "type": null
+        }
+    ], 
+    "namespace": null, 
+    "name": "ShowQuestionsController", 
+    "tableDeclaration": {
+        "type": "ShowQuestionsController", 
+        "modifiers": [], 
+        "references": [], 
+        "location": {
+            "column": 29, 
+            "line": 1
+        }, 
+        "name": "ShowQuestionsController"
+    }, 
+    "key": "01pj0000002nIrgAAE", 
+    "variables": [
+        {
+            "type": "String", 
+            "modifiers": [], 
+            "references": [], 
+            "location": {
+                "column": 54, 
+                "line": 8
+            }, 
+            "name": "word"
+        }, 
+        {
+            "type": "LIST", 
+            "modifiers": [], 
+            "references": [], 
+            "location": {
+                "column": 21, 
+                "line": 9
+            }, 
+            "name": "k"
+        }, 
+        {
+            "type": "questionSelected", 
+            "modifiers": [], 
+            "references": [], 
+            "location": {
+                "column": 53, 
+                "line": 14
+            }, 
+            "name": "objQ"
+        }, 
+        {
+            "type": "LIST", 
+            "modifiers": [], 
+            "references": [], 
+            "location": {
+                "column": 80, 
+                "line": 14
+            }, 
+            "name": "ansQ"
+        }, 
+        {
+            "type": "LIST", 
+            "modifiers": [], 
+            "references": [], 
+            "location": {
+                "column": 98, 
+                "line": 14
+            }, 
+            "name": "deletelistA"
+        }
+    ], 
+    "id": "01pj0000002nIrgAAE", 
+    "methods": [
+        {
+            "modifiers": [
+                "STATIC"
+            ], 
+            "name": "getQuestions", 
+            "parameters": [
+                {
+                    "type": "String", 
+                    "name": "word"
+                }
+            ], 
+            "visibility": "PUBLIC", 
+            "references": [], 
+            "location": {
+                "column": 34, 
+                "line": 8
+            }, 
+            "returnType": "LIST", 
+            "type": null
+        }, 
+        {
+            "modifiers": [
+                "STATIC"
+            ], 
+            "name": "saveQuestion", 
+            "parameters": [
+                {
+                    "type": "questionSelected", 
+                    "name": "objQ"
+                }, 
+                {
+                    "type": "LIST", 
+                    "name": "ansQ"
+                }, 
+                {
+                    "type": "LIST", 
+                    "name": "deletelistA"
+                }
+            ], 
+            "visibility": "PUBLIC", 
+            "references": [], 
+            "location": {
+                "column": 23, 
+                "line": 14
+            }, 
+            "returnType": "String", 
+            "type": null
+        }
+    ]
+}

@@ -1,0 +1,15 @@
+<apex:page controller="testc">
+  <!-- Begin Default Content REMOVE THIS -->
+  
+  <apex:form >
+  
+  <apex:inputCheckbox value="{!myhome.haslight}" />
+  
+  <a href="#" onclick="nadajs()">click</a>
+  <apex:outputPanel id="ok">
+      {!myhome.haslight}
+  </apex:outputPanel>
+  <apex:actionFunction action="{!nada}" name="nadajs" reRender="ok"/>
+  </apex:form>
+  <!-- End Default Content REMOVE THIS -->
+</apex:page>

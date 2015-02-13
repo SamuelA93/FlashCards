@@ -1,0 +1,420 @@
+<apex:page controller="ShowQuestionsController" showHeader="false" sidebar="false" standardStylesheets="fasle">
+	<style type="text/css">
+		.btnP {
+		  background: #3498db !important;
+		  background-image: -webkit-linear-gradient(top, #3498db, #2980b9)  !important;
+		  background-image: -moz-linear-gradient(top, #3498db, #2980b9)  !important;
+		  background-image: -ms-linear-gradient(top, #3498db, #2980b9)  !important;
+		  background-image: -o-linear-gradient(top, #3498db, #2980b9)  !important;
+		  background-image: linear-gradient(to bottom, #3498db, #2980b9)  !important;
+		  -webkit-border-radius: 8  !important;
+		  -moz-border-radius: 8  !important;
+		  border-radius: 8px  !important;
+		  font-family: Arial  !important;
+		  color: #ffffff  !important;
+		  font-size: 20px  !important;
+		  padding: 10px 20px 10px 20px  !important;
+		  text-decoration: none  !important;
+		}
+
+		.btnP:hover {
+		  background: #3cb0fd;
+		  background-image: -webkit-linear-gradient(top, #3cb0fd, #3498db)  !important;
+		  background-image: -moz-linear-gradient(top, #3cb0fd, #3498db)  !important;
+		  background-image: -ms-linear-gradient(top, #3cb0fd, #3498db)  !important;
+		  background-image: -o-linear-gradient(top, #3cb0fd, #3498db)  !important;
+		  background-image: linear-gradient(to bottom, #3cb0fd, #3498db)  !important;
+		  text-decoration: none  !important;
+		}
+		.it{
+			padding: 10px;
+			cursor: -webkit-grabbing;
+			width: 150px;
+			height: 150px;
+			background-color: rgb(228, 247, 255);
+			text-align: center;
+			font-style: normal;
+		}
+		.itemP{
+			background-color: antiquewhite;
+			border-radius: 8px;
+			height: 150px;
+			margin: 10px 0px 5px 10px;
+			padding: 19px;
+			cursor: default;
+		}
+		.itemP:hover{background-color: rgb(249, 245, 241);}
+		.edit{
+			margin-top: 13%;
+			display: none;		}
+			.row{margin-bottom: 12px !important;}
+    .delete:hover{
+        color: rgb(18, 82, 182);
+    }
+	</style>
+
+<div id="myModal" class="modal fade">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title">Confirmation</h4>
+            </div>
+            <div class="modal-body" id="bodyModal">
+
+                
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                <button id="confirmDelate" type="button" class="btn btn-primary">Delete</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+	<div class="container" >
+		<div class="row" style="margin-top:20%" id="Search">
+
+			<div class="col-xs-8 col-xs-offset-2 col-sm-6  col-sm-offset-3  col-md-4  col-md-offset-4 col-lg-4 col-lg-offset-4 ">
+				<input type="text" name="question" id="inputQuestion" class="form-control" placeholder="Search....">
+							
+				</input>
+			</div>
+		</div>
+		<div class="row" id="Questions" >
+			
+		</div>
+		<div class="row edit"  id="Edit" >
+			<div class="col-xs-12 col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3 col-lg-6 col-lg-offset-3">
+				<div class="row">
+					<div class="col-xs-10 col-sm-11 col-md-11 col-lg-11">
+						<span id="alertm"></span>
+					</div>
+					<div class="col-xs-1  col-sm-1    col-md-1   col-lg-1  ">
+						<div id="closeEdit" class="btn btn-danger" style="float: right;"><span  >X</span></div>
+						
+					</div>
+				</div>
+				
+
+				<div class="row" id="textareainput">
+					<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+						<textarea id="questionInput" class="form-control"> </textarea>
+					</div>
+				</div>
+				<span id="fieldInput">
+							
+				</span>
+				<div class="row">
+          <div class="col-xs-9 col-sm-10 col-md-10 col-lg-10 text-center">
+            <a id="addField" class="btn btn-info" href="#" role="button">Add new Option</a>
+          </div>
+        </div>		
+				<div class="row">
+					<div class="col-xs-2 col-sm-2 col-md-2 col-lg-2 ">
+						<a id="save" class="btn btn-default" href="#" role="button">Save</a>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	
+	<link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css" rel="stylesheet"/>
+  <apex:stylesheet value="{!$Resource.questionscss}"/>
+  <apex:includeScript value="//ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js" />
+  <apex:includeScript value="//maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js" />
+ <!-- 
+  <link href="{!URLFOR($Resource.bootstrap, '/bootstrap322/css/bootstrap.min.css')}" rel="stylesheet"/>
+  <apex:stylesheet value="{!$Resource.questionscss}"/>
+  <apex:includeScript value="//ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js" />
+  <apex:includeScript value="{!URLFOR($Resource.bootstrap, '/bootstrap322/js/bootstrap.js')}"/> -->
+  <script type="text/javascript">
+    
+    
+  	global={};
+  	global.util={};
+  	global.questionsFound=[];
+  	global.questions=[];
+  	global.word ='';
+    global.indexOptionEdit = null;
+    global.deleteItemFromAnswers = [];
+    global.AdeleteIds = [];
+  	global.handleError = new Map();
+  	global.handleError.set('AtLeastOneRightA',false);
+    global.handleError.set('AtLeastOption',false);
+  	global.handleError.set('NotEmptyOption',false);
+    global.handleError.set('NotEmptyOption',false);
+  	//     new schema 
+  	global.question 	  ={};
+  	global.listAnsewers =[];
+  	global.listOptions  =[];
+    global.countNewOptions = 0;
+  	var questionSelected = function(idq,q,operation ){
+  		this.idq 		       = idq;
+  		this.q			       = q;
+  		this.operation	   = operation;
+  	}
+  	var answerSelected = function(ida,ido,correct,operation ){
+  		this.ida		     = ida;
+  		this.ido 		     = ido;
+  		this.correct	   = correct;
+  		this.operation	 = operation;
+      this.option      = {};
+    }
+  	var optionSelected   = function(ido,option,operation ){
+  		this.ido 		       = ido;
+  		this.option		     = option;
+  		this.operation	   = operation;
+  	}	
+  	//////////////////////////
+
+  	global.makeChanges = [];
+
+  	$(document).ready(function(){
+      $('#myModal').on('shown.bs.modal', function () {
+          $('#myInput').focus();
+    });
+    
+  		
+
+      global.util.getQuestions = function(){
+	  			Visualforce.remoting.Manager.invokeAction(
+				        '{!$RemoteAction.ShowQuestionsController.getQuestions}',
+				        global.word,
+				        function(result, event){
+				            if(event.status){
+				            	//console.log(result);
+				            	global.questions = result;
+                      global.init();
+				            }
+				        }, 
+				        {escape: true}
+		    	);
+	  	}
+	    
+  		global.util.find = function (word){
+  			global.questionsFound=[];
+  			$(global.questions).each(function(index,elem){
+  				if(elem.Question__c.toUpperCase().search(word.toUpperCase())>-1){
+  					global.questionsFound.push(elem);
+  				}
+  		  });
+  		}
+
+  		global.util.displayItem = function(index){
+  		}
+
+  		global.save = function (){
+  			var varJson ='';
+  			if(global.handleError.get('AtLeastOneRightA')){
+  					Visualforce.remoting.Manager.invokeAction(
+				        '{!$RemoteAction.ShowQuestionsController.saveQuestion}',
+				        global.question,global.listAnsewers, global.AdeleteIds,
+				        function(result, event){
+				            if(event.status){
+				            	console.log(result);
+				            }
+				        }, 
+				        {escape: true}
+		    		);
+  			}
+  		}
+
+      /////////////////////////////  event save
+  		$(document).on('click','#save',function(){
+  			global.save();
+  		});
+      /////////////////////  check if doesn't exist correct answer
+      global.util.checkExistCorrect = function(){
+        if($('input:checked').length ==0){
+          $('#alertm').empty();
+          $('#alertm').attr('style','color:orange');
+          $('#alertm').append('At least one option must be correct.');
+          global.handleError.set('AtLeastOneRightA',false);
+        }else{
+          $('#alertm').empty();
+          global.handleError.set('AtLeastOneRightA',true);
+        }
+      }
+      ////////////////////////////  add new option
+      $(document).on('click','#addField',function(){
+        global.countNewOptions ++;
+        var auxA = new answerSelected('NA_'+global.countNewOptions,'NO_'+global.countNewOptions,false,'New');
+        auxA.option = new optionSelected('NO_'+global.countNewOptions,'','New');
+        global.listAnsewers.push(auxA);
+        auxA=null;
+        global.util.checkExistCorrect();
+        global.util.reloadOptionList(global.listAnsewers);
+
+      });
+
+  		global.ShowList = function(){
+  			var itemsHTML =  $();
+  			$(global.questionsFound).each(function(index,elem){
+  				itemsHTML = itemsHTML.add('<div id="'+index+'" class="col-xs-5 col-sm-4 col-md-3 col-lg-3 itemP" ><div class=""><span >'+elem.Question__c+'</span></div></div>');
+					
+  			});
+  			$('#Questions').empty();
+  			$('#Questions').append(itemsHTML);
+  		}
+
+      ///////////////// event  question input
+  		$('#inputQuestion').on('input',function(){
+  			global.util.find(this.value.trim());
+  			global.ShowList();
+  		});
+
+  		///////////////// event option input
+  		$( document ).on('input','.optionEdit',function(){
+        console.log('################ input option text');
+  			var scope = this;
+  			global.listAnsewers.forEach(function(elem,index,all){
+  				if(elem.ida == $(scope).attr('id')){
+  					elem.option.option 	  = $(scope).val().trim();
+            if(elem.operation.search('New')<0){
+              elem.operation  = 'Update';
+            }
+  					console.log(elem);
+  				}
+  			});
+
+	  	});
+      
+      //////////////////////////  event Correct? checkbox
+  		$( document ).on('change','.correctEdit',function(){
+        console.log('################ input correct checkbox');
+	  		global.util.checkExistCorrect();
+	  		var scope = this;
+	  		global.listAnsewers.forEach(function(elem,index,all){
+          console.log(elem.ida +'  '+$(scope).attr('id'));
+	  			if(elem.ida == $(scope).attr('id')){
+	  				elem.correct = $(scope).is(":checked");
+	  				if(elem.operation.search('New')<0){
+              elem.operation  = 'Update';
+            }
+            console.log(elem);
+	  			}
+	  	  });
+      }); 
+	  		// ------>	global.questionToEdit.answers.get($(this).closest('.row').attr('id')).isCorrect = $(this).is(":checked");
+	  		
+	    $( document ).on('input','#questionInput',function(){
+	  		global.question.q = $(this).val().trim();
+	  		global.question.operation = 'Update';
+	  		console.log(global.question);
+	  	});
+
+      
+
+  		///////////////////////////////////// event when select question for edit 
+
+  		$( document ).on( "click", '.itemP', function() {
+  				
+        console.log(this.id);
+        console.log(global.questionsFound[this.id]);
+        global.indexOptionEdit = this.id;
+
+  			////////////////////////////////// instantiate question object     global.listAnsewers =[];
+
+  			global.question = new questionSelected(global.questionsFound[global.indexOptionEdit].Id,global.questionsFound[global.indexOptionEdit].Question__c,'Nothing');
+
+        $(global.questionsFound[global.indexOptionEdit].Answers__r).each(function(index,elem){
+            var auxA = new answerSelected(elem.Id,elem.Option__c,elem.Correct__c,'Nothing' );
+            auxA.option = new optionSelected(elem.Option__c,elem.Option__r.Option__c,'Nothing');
+            global.listAnsewers.push(auxA); 
+            auxA=null;
+        });
+
+  			//////////////////////////////////  set view div's
+
+  			$('#Search').hide();
+  			$('#Questions').hide();
+  			$('#Edit').show();
+
+        //////////////////////////////////  set input field question
+
+  			$('#questionInput').val(global.question.q);
+        console.log(global.listAnsewers);
+        global.util.reloadOptionList();
+  		});
+
+      ///////////////////////////////////  reload
+      global.util.reloadOptionList = function(){
+        itemsHTML = $();
+        $(global.listAnsewers).each(function(index,elem){
+            var text ='';
+            
+            /////////////////////////// generate the html for the options
+            text += '<div class="row contAnswer'+elem.ida+'" id="'+elem.ida+'">';
+            text += '<div class="col-xs-12 col-sm-9 col-md-9 col-lg-9" id="'+elem.ida+'">';
+            text += '<input type="text" name="Option__c" id="'+elem.ida+'" class="form-control optionEdit" value="'+elem.option.option+'" />';
+            text += '</div>';
+            text += '<div class="col-xs-4 col-sm-3 col-md-3 col-lg-3" >';
+            text += '<div class="" style="margin-top: 7px;">';
+            text += '<input style="margin-right: 7px !important;" class="correctEdit" id="'+elem.ida+'" type="checkbox" name="Correct__c" value="'+elem.ido+'" '+ (elem.correct  ? 'checked' : '' )+'/>Correct?' ;
+            text += '<span class="glyphicon glyphicon-trash delete" style="float:right;font-size: 17px;" id="'+elem.ida+'"></div></div></div>';
+            itemsHTML = itemsHTML.add(text);
+            text='';
+          });
+        $('#fieldInput').empty();
+        $('#fieldInput').append(itemsHTML);
+      }
+
+  		$( document ).on( "click", '#closeEdit', function() {
+  			global.questionToEdit = null;
+  			$('#Search').show();
+  			$('#Questions').show();
+  			$('#Edit').hide();
+
+  		});
+      $( document ).on( "click", '.delete', function() {
+        console.log('##################### .delete');
+        var scope = this;
+        global.listAnsewers.forEach(function(elem,index,all){
+            if (elem.ida == $(scope).attr('id')) {
+              console.log(elem.ida +' '+$(scope).attr('id'));
+              global.deleteItemFromAnswers.push(index);
+              //global.deleteItemFromAnswers.push('.contAnswer'+elem.ida); // get the row which conten the answer element to delete
+              var bodyModal =  '<p >'+elem.option.option+'<p>';
+                  bodyModal += '<p class="text-warning"><small>Are you sure you want to delete the option?</small></p>';
+              $('#bodyModal').empty();
+              $('#bodyModal').append(bodyModal);
+              $("#myModal").modal('show');
+            }
+        });
+      });
+      
+    $( document ).on( "click", '#confirmDelate', function() {
+      console.log('##################### #confirmDelate');
+      console.log(global.deleteItemFromAnswers[0]+' /// '+global.deleteItemFromAnswers[1]);
+      if(global.listAnsewers[global.deleteItemFromAnswers[0]].ida.search('NA_') < 0){
+        global.AdeleteIds.push(global.listAnsewers[global.deleteItemFromAnswers[0]].ida);
+      }
+      global.listAnsewers.splice(global.deleteItemFromAnswers[0],1);
+      global.deleteItemFromAnswers=[];
+      global.util.reloadOptionList();
+      global.util.checkExistCorrect();
+      $("#myModal").modal('hide');
+      console.log(' delete '+global.AdeleteIds);
+    });
+
+  		global.init = function(){
+  			//global.util.getQuestions();
+  			//setTimeout(function() {
+	  			if(global.questions.length>0){
+	  				global.util.find(global.word);
+	  				global.ShowList();
+	  			}
+  			//}, 1000);
+  		}
+      global.util.getQuestions();
+  		
+      
+    });
+  </script>
+
+</apex:page>

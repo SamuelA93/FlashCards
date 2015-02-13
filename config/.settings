@@ -1,0 +1,19 @@
+{
+    "username": "devtest@test.com", 
+    "project_name": "devtest", 
+    "org_url": "", 
+    "namespace": "", 
+    "metadata_container": "1dcj0000000YDZZAA4", 
+    "environment": "developer", 
+    "workspace": "/Users/sastol/Documents/workspace", 
+    "id": "OXNURPWEFS0DWK53KDDMYKTC7PHOC1GU", 
+    "subscription": [
+        "ApexClass", 
+        "ApexComponent", 
+        "ApexPage", 
+        "ApexTrigger", 
+        "StaticResource", 
+        "CustomObject", 
+        "Profile"
+    ]
+}

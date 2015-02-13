@@ -1,0 +1,604 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+			[
+				"op",
+				"optionSelected"
+			],
+			[
+				"q",
+				"QuestionModel"
+			],
+			[
+				"sty",
+				"standardStylesheets	(Boolean)"
+			],
+			[
+				"mar",
+				"margin-top"
+			],
+			[
+				"sa",
+				"span	Tag"
+			],
+			[
+				"sh",
+				"showHeader	(Boolean)"
+			],
+			[
+				"ng-r",
+				"ng-repeat	AngularJS"
+			],
+			[
+				"$s",
+				"$scope	AngularJS(DI)"
+			],
+			[
+				"on",
+				"onchange	(String)"
+			],
+			[
+				"act",
+				"apex:actionSupport"
+			],
+			[
+				"pa",
+				"apex:param"
+			],
+			[
+				"h",
+				"href	Attr"
+			],
+			[
+				"inp",
+				"apex:inputField"
+			],
+			[
+				"v",
+				"var	(String)"
+			],
+			[
+				"ao",
+				"apex:outputPanel"
+			],
+			[
+				"i",
+				"id	(String)"
+			],
+			[
+				"o",
+				"oncomplete	(String)"
+			],
+			[
+				"ma",
+				"margin-top"
+			],
+			[
+				"di",
+				"display"
+			],
+			[
+				"s",
+				"styleClass	(String)"
+			],
+			[
+				"d",
+				"display"
+			],
+			[
+				"t",
+				"target	(String)"
+			],
+			[
+				"r",
+				"reRender	(Object)"
+			],
+			[
+				"f",
+				"apex:actionFunction"
+			],
+			[
+				"fon",
+				"font-weight"
+			],
+			[
+				"sel",
+				"apex:selectCheckboxes"
+			],
+			[
+				"re",
+				"rendered	(Boolean)"
+			],
+			[
+				"ch",
+				"apex:inputCheckbox"
+			],
+			[
+				"out",
+				"apex:outputText"
+			],
+			[
+				"w",
+				"width"
+			],
+			[
+				"ou",
+				"apex:outputPanel"
+			],
+			[
+				"ng-c",
+				"ng-controller	AngularJS"
+			],
+			[
+				"$sc",
+				"$scope	AngularJS"
+			],
+			[
+				"c",
+				"controller	AngularJS"
+			],
+			[
+				"mo",
+				"module	AngularJS"
+			],
+			[
+				"m",
+				"module	AngularJS"
+			],
+			[
+				"ape",
+				"apex:column"
+			],
+			[
+				"ba",
+				"background-color"
+			],
+			[
+				"st",
+				"style	Tag"
+			]
+		]
+	},
+	"buffers":
+	[
+		{
+			"file": "src/pages/ShowQuestions.page",
+			"settings":
+			{
+				"buffer_size": 13022,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"contents": "global  with sharing class ShowQuestionsController {\n\n	global static integer numberItems=5;\n	public ShowQuestionsController() {\n		\n	}\n	@RemoteAction\n	global static list<Question__c> getQuestions(string word){\n		list<Question__c> k = new list<Question__c>();\n		k =Database.query('SELECT Id, Question__c, Help_link__r.Link__c ,(SELECT id, Option__r.Option__c, Correct__c FROM Answers__r) FROM Question__c WHERE Question__c LIKE \\'%'+word+'%\\' LIMIT '+numberItems);\n		return k;\n	}\n	\n\n}",
+			"file": "src/classes/ShowQuestionsController.cls",
+			"file_size": 480,
+			"file_write_time": 130681557540000000,
+			"settings":
+			{
+				"buffer_size": 482,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "src/pages/Questions.page",
+			"settings":
+			{
+				"buffer_size": 12746,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "src/classes/QuestionsController.cls",
+			"settings":
+			{
+				"buffer_size": 4762,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "src/staticresources/questionscss.resource",
+			"settings":
+			{
+				"buffer_size": 4274,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"contents": "<!DOCTYPE html>\n<html ng-app = \"myApp\">\n<head>\n	<link rel=\"stylesheet\" href=\"https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css\">\n	<link rel=\"stylesheet\" href=\"css/style.css\">\n	<!--<script type=\"text/javascript\" src=\"require.js\" data-main=\"js/main.js\"></script>-->\n	<script src=\"https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js\"></script>\n	<script type=\"text/javascript\" src=\"js/data.js\" ></script>\n	<script type=\"text/javascript\" src=\"js/velocity-master/velocity.min.js\" ></script>\n	<script type=\"text/javascript\" src=\"js/velocity-master/velocity.ui.min.js\" ></script>\n	<script type=\"text/javascript\" src=\"https://ajax.googleapis.com/ajax/libs/angularjs/1.3.9/angular.min.js\" ></script>\n	<script type=\"text/javascript\" src=\"js/app.js\" ></script>\n	<title></title>\n</head>\n<body ng-controller=\"TextController\">\n	<div class=\"container\" style=\"margin-top:5%\" >\n		<div class=\"row\">\n			<div class=\"col-xs-12 col-sm-12 col-md-8 col-md-offset-2 col-lg-8 col-lg-offset-2\">\n				<div class=\"row\">\n					<div class=\"col-xs-12 col-sm-12 col-md-12 col-lg-12  text-center bg-info\">\n						<a class=\"\" href=\"#\" > Display list questions </a>\n					</div>\n				</div>\n				<div class=\"row\" id=\"Pack\">\n					<div class=\"col-lg-12\">\n						<div class=\"row\" id=\"questions\">\n							<div class=\"col-xs-10 col-sm-10 col-md-10 col-lg-10 text-center\" >\n								{{que.question}}\n							</div>\n							<div id=\"check\" class=\"col-xs-2  col-sm-2  col-md-2  col-lg-2  btn btn-info\" disabled=\"disabled\" ng-click=\"check()\">Check</div>\n						</div>\n						<div class=\"row\" id=\"chooses\" >\n							<div class=\"col-xs-8 col-xs-offset-2 col-sm-8 col-sm-offset-2 col-md-8 col-md-offset-2  col-lg-8 col-lg-offset-2  text-left \" >\n							 	<form action=\"\" id=\"form\">\n							 		<div class=\"row\"  id=\"appendOptions\" ng-click=\"activeCheck()\"> 	\n							 		</div>\n								</form>\n							</div>\n						</div>\n					</div>\n				</div>\n				<div class=\"row\">\n					<div class=\"col-xs-3  col-sm-2   col-md-2 col-lg-2  btn btn-default\" ng-click=\"back()\">Back</div>\n					<div class=\"col-xs-2 col-xs-offset-2 col-sm-2 col-sm-offset-3  col-md-2 col-md-offset-3  col-lg-2 col-lg-offset-3 btn btn-warning\"  ng-click=\"help()\">Help</div>\n\n					<div class=\"col-xs-3 col-xs-offset-2 col-sm-2 col-sm-offset-3  col-md-2 col-md-offset-3 col-lg-2 col-lg-offset-3 btn btn-default\" ng-click=\"next()\">Next</div>\n				</div>\n\n				<div class=\"row\" id=\"answers\">\n						<div class=\"col-xs-11 col-sm-11 col-md-11 col-lg-11 \" >\n								<span  ng-repeat=\"val in que.urls\"> <a ng-href=\"{{val}}\">{{val}}</a><br/></span>\n						</div>\n				</div>\n			</div>\n		</div>\n		<div class=\"row\">\n			<div class=\"col-xs-12 col-sm-12 col-md-8 col-md-offset-2 col-lg-8 col-lg-offset-2\">\n				<div class=\"row\">\n					<div class=\"col-xs-12 col-sm-12 col-md-8 col-md-offset-2 col-lg-8 col-lg-offset-2\">\n						<textarea type=\"text\" name=\"question\" class=\"questionInput\"></textarea>\n 					</div>\n				</div>\n				<div class=\"row\">\n					<div class=\"col-xs-12 col-sm-12 col-md-8 col-md-offset-2 col-lg-8 col-lg-offset-2\">\n						opt\n					</div>\n				</div>\n				<div class=\"row\">\n					<div class=\"col-xs-12 col-sm-12 col-md-8 col-md-offset-2 col-lg-8 col-lg-offset-2\">\n						<input type=\"text\" name=\"answ\" /> \n					</div>\n					<div class=\"col-xs-12 col-sm-12 col-md-8 col-md-offset-2 col-lg-8 col-lg-offset-2\">\n						delete\n					</div>\n				</div>\n				<div class=\"row\">\n					<div class=\"col-xs-12 col-sm-12 col-md-8 col-md-offset-2 col-lg-8 col-lg-offset-2\">\n						<input type=\"text\" name=\"answ\" /> \n					</div>\n					<div class=\"col-xs-12 col-sm-12 col-md-8 col-md-offset-2 col-lg-8 col-lg-offset-2\">\n						delete\n					</div>\n				</div>\n				<div class=\"row\">\n					<div class=\"col-xs-12 col-sm-12 col-md-8 col-md-offset-2 col-lg-8 col-lg-offset-2\">\n						<input type=\"text\" name=\"answ\" /> \n					</div>\n					<div class=\"col-xs-12 col-sm-12 col-md-8 col-md-offset-2 col-lg-8 col-lg-offset-2\">\n						delete\n					</div>\n				</div>\n			</div>\n		</div>\n	</div>\n	https://login.salesforce.com/?un=devtest@test.com&pw=testsalesforce123\n</body>\n</html>",
+			"file": "/Users/sastol/Desktop/proy401/init.html",
+			"file_size": 3983,
+			"file_write_time": 130671038460000000,
+			"settings":
+			{
+				"buffer_size": 4053,
+				"line_ending": "Unix"
+			}
+		}
+	],
+	"build_system": "",
+	"command_palette":
+	{
+		"height": 392.0,
+		"selected_items":
+		[
+			[
+				"pack",
+				"Package Control: Install Package"
+			],
+			[
+				"ins",
+				"Package Control: Install Package"
+			],
+			[
+				"i",
+				"Package Control: Install Package"
+			],
+			[
+				"rem",
+				"Package Control: Remove Package"
+			],
+			[
+				"inst",
+				"Package Control: Install Package"
+			]
+		],
+		"width": 575.0
+	},
+	"console":
+	{
+		"height": 126.0,
+		"history":
+		[
+			"import urllib.request,os,hashlib; h = '7183a2d3e96f11eeadd761d777e62404' + 'e330c659d4bb41d3bdf022e94cab3cd0'; pf = 'Package Control.sublime-package'; ipp = sublime.installed_packages_path(); urllib.request.install_opener( urllib.request.build_opener( urllib.request.ProxyHandler()) ); by = urllib.request.urlopen( 'http://packagecontrol.io/' + pf.replace(' ', '%20')).read(); dh = hashlib.sha256(by).hexdigest(); print('Error validating download (got %s instead of %s), please try manual install' % (dh, h)) if dh != h else open(os.path.join( ipp, pf), 'wb' ).write(by)"
+		]
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"expanded_folders":
+	[
+		"/Users/sastol/Documents/workspace/devtest",
+		"/Users/sastol/Documents/workspace/devtest/src",
+		"/Users/sastol/Documents/workspace/devtest/src/classes",
+		"/Users/sastol/Documents/workspace/devtest/src/pages"
+	],
+	"file_history":
+	[
+		"/Users/sastol/Library/Application Support/Sublime Text 3/Packages/User/mavensmate.sublime-settings",
+		"/Users/sastol/Documents/workspace/devtest/src/pages/Questions.page",
+		"/Users/sastol/Documents/workspace/devtest/src/pages/NewQuestion.page",
+		"/Users/sastol/Documents/workspace/devtest/src/classes/testJson.cls",
+		"/Users/sastol/Desktop/testJesonData",
+		"/Users/sastol/Desktop/proy401/js/lodash.js",
+		"/Users/sastol/Desktop/proy401/js/questions.json",
+		"/Users/sastol/Documents/workspace/Test Lightning/src/pages/NewQuestion.page",
+		"/Users/sastol/Documents/workspace/Test Lightning/src/classes/MyApexClass.cls",
+		"/Users/sastol/Documents/workspace/Test Lightning/src/classes/ExpenseController.cls",
+		"/Users/sastol/Documents/workspace/Test Lightning/src/classes/TableTestController.cls",
+		"/Users/sastol/Documents/workspace/Test Lightning/src/pages/TableTest.page",
+		"/Users/sastol/Documents/workspace/Test Lightning/Test Lightning.sublime-settings",
+		"/Users/sastol/Library/Application Support/Sublime Text 3/Packages/MavensMate/mavensmate.sublime-settings",
+		"/Users/sastol/Library/Application Support/Sublime Text 3/Packages/User/toolingapi.sublime-settings"
+	],
+	"find":
+	{
+		"height": 35.0
+	},
+	"find_in_files":
+	{
+		"height": 0.0,
+		"where_history":
+		[
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": false,
+		"find_history":
+		[
+			"isCorect",
+			"is",
+			"save",
+			"handleError",
+			"global.handleErrorset",
+			"save",
+			"tool",
+			"mm_use_tooling_api",
+			"question",
+			"ns",
+			"	\n",
+			"outputLink",
+			"count",
+			"reviewOption",
+			"form",
+			"questionItem",
+			"ng",
+			"mm_compile_with_tooling_api"
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": false,
+		"replace_history":
+		[
+		],
+		"reverse": false,
+		"show_context": true,
+		"use_buffer2": true,
+		"whole_word": false,
+		"wrap": true
+	},
+	"groups":
+	[
+		{
+			"selected": 0,
+			"sheets":
+			[
+				{
+					"buffer": 0,
+					"file": "src/pages/ShowQuestions.page",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 13022,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								11346,
+								11346
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/HTML/HTML.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 4641.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 0,
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": "src/classes/ShowQuestionsController.cls",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 482,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								273,
+								273
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/MavensMate/sublime/lang/Apex.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 1,
+					"type": "text"
+				},
+				{
+					"buffer": 2,
+					"file": "src/pages/Questions.page",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 12746,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								10772,
+								10820
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/HTML/HTML.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 3356.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 2,
+					"type": "text"
+				},
+				{
+					"buffer": 3,
+					"file": "src/classes/QuestionsController.cls",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 4762,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								4484,
+								4616
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/MavensMate/sublime/lang/Apex.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 3,
+					"type": "text"
+				},
+				{
+					"buffer": 4,
+					"file": "src/staticresources/questionscss.resource",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 4274,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								3489,
+								3489
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/CSS/CSS.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 1907.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 4,
+					"type": "text"
+				},
+				{
+					"buffer": 5,
+					"file": "/Users/sastol/Desktop/proy401/init.html",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 4053,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								4037,
+								3967
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/HTML/HTML.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 5,
+					"type": "text"
+				}
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 23.0
+	},
+	"input":
+	{
+		"height": 31.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"output.MavensMate-OutputPanel":
+	{
+		"height": 168.0
+	},
+	"output.find_results":
+	{
+		"height": 0.0
+	},
+	"project": "devtest.sublime-project",
+	"replace":
+	{
+		"height": 42.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 0.0,
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_symbol":
+	{
+		"height": 0.0,
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"selected_group": 0,
+	"settings":
+	{
+	},
+	"show_minimap": true,
+	"show_open_files": false,
+	"show_tabs": true,
+	"side_bar_visible": true,
+	"side_bar_width": 188.0,
+	"status_bar_visible": true,
+	"template_settings":
+	{
+	}
+}
