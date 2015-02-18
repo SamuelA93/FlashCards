@@ -179,15 +179,7 @@
 			"file": "src/pages/ShowQuestions.page",
 			"settings":
 			{
-				"buffer_size": 15139,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "/Users/sastol/Library/Application Support/Sublime Text 3/Packages/User/mavensmate.sublime-settings",
-			"settings":
-			{
-				"buffer_size": 9259,
+				"buffer_size": 17719,
 				"line_ending": "Unix"
 			}
 		},
@@ -216,10 +208,13 @@
 			}
 		},
 		{
+			"contents": "/*  # {}    */\n\n#questions{\n	background-color: rgb(217, 244, 247);\n	border-radius: 2px;\n	margin-top: 5px;\n\n}\n\n#chooses{\n	margin-top: 5px;\n	margin-bottom: 5px;\n	background-color: rgb(252, 249, 206);\n	border-radius: 2px;\n}\n#answers{\n	margin-top: 5px;\n	margin-bottom: 5px;\n	background-color: rgb(217, 242, 204);\n	border-radius: 2px;\n}\n.questionInput{\n	width: 401px;\n	margin: 0px;\n	height: 155px;\n	max-width: 401px;\n	max-height: 155px;\n}\nbody{\n	/* background-color: #E4E1E1 !important;\n	background-image: url(http://www.transparenttextures.com/patterns/black-linen-2.png);\n	/* This is mostly intended for prototyping; please download the pattern and re-host for production environments. Thank you! */\n}\n.blockupper{\n	height: 100px;\n	width: 100%;\n}\n.cont-slide{\n	border-radius: 8px !important;\n	background-color: rgba(226, 226, 226, 0.41) !important;\n	padding-bottom: 17px !important;\n	\n	margin-bottom: 10px;\n}\n.cont-slide .row{\n	\n}\ntable tr td input{\n	margin-right: 13px !important ;\n}\ntable{\n	width: 100%;\n}\ntable tr td label{\n	vertical-align: text-top;\nwidth: 80%;\n	font-weight: 400 !important;\n	overflow-wrap: break-word;\n}\n.cont-links{\n	overflow-wrap: break-word;\n	display: none;\n	background-color: rgba(184, 222, 91, 0.81) !important;\n	padding: 5px !important;\n	border-radius: 5px !important;\n	\n}\n.cont-links a{\n	color: black !important;\n}\n.cont-links {\n	margin-top: 10px !important;\n	background-color: rgba(184, 222, 91, 1) !important;\n}\n.cont-question{\n	padding: 5px 0px 5px 0px;\n	border-radius: 7px 7px 0px 0px;\n	background-color: rgb(77, 77, 77);\n}\n.buttonSol{\n	box-shadow: -7px -3px 11px rgb(123, 9, 123);\n	font-size: 32px;\n	color: rgb(244, 244, 244);\n	padding-top: 8%;\n	position: absolute;\n	width: 145px;\n	top: -66px;\n	left: -25px;\n	z-index: -1;\n	height: 145px;\n	cursor: wait;\n	background-color: rgb(255, 213, 0);\n	border-radius: 73px;\n}\n.buttonSol span{\n	text-shadow: 2px 2px 8px rgb(115, 7, 80);\n}\n.count-number{\n	border-radius: 4px 4px 0px 0px;\nbackground-color: white;\n}\n.reviewOption{\n	padding-top: 5px;\n	height: 20px;\n	float: left;\n	width: 20px;\n}\n.reviewOption input{\n	\n}\n.messRA{\n	color: rgb(255, 255, 255);\npadding: 7px;\nwidth: 120px;\n/* height: 62px; */\nfont-size: 12px;\nbackground-color: black;\nfloat: right;\nborder-radius: 13px;\n}\n.blank{\n	margin-top: 10px !important;\n\n}\n	\n.start:link {\n   color: #628AD3;\n	text-decoration: none;\n}\n\n/* visited link */\n.start:visited {\n  color: #628AD3;\n	text-decoration: none;\n}\n\n/* mouse over link */\n.start:hover {\n    color: #628AD3;\n	text-decoration: none;\n}\n/* selected link */\n.start:active {\n    color: #628AD3;\n	text-decoration: none;\n} \n.myButton {\n	-moz-box-shadow:inset 0px 1px 0px 0px #ffffff;\n	-webkit-box-shadow:inset 0px 1px 0px 0px #ffffff;\n	box-shadow:inset 0px 1px 0px 0px #ffffff;\n	background:-webkit-gradient(linear, left top, left bottom, color-stop(0.05, #ededed), color-stop(1, #dfdfdf));\n	background:-moz-linear-gradient(top, #ededed 5%, #dfdfdf 100%);\n	background:-webkit-linear-gradient(top, #ededed 5%, #dfdfdf 100%);\n	background:-o-linear-gradient(top, #ededed 5%, #dfdfdf 100%);\n	background:-ms-linear-gradient(top, #ededed 5%, #dfdfdf 100%);\n	background:linear-gradient(to bottom, #ededed 5%, #dfdfdf 100%);\n	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#ededed', endColorstr='#dfdfdf',GradientType=0);\n	background-color:#ededed;\n	-moz-border-radius:6px;\n	-webkit-border-radius:6px;\n	border-radius:6px;\n	border:1px solid #dcdcdc;\n	display:inline-block;\n	cursor:pointer;\n	color: #628AD3;\n	font-family:arial;\n	font-size:28px;\n	font-weight:bold;\n	padding:6px 23px;\n	text-decoration:none;\n	text-shadow:0px 1px 0px #ffffff;\n}\n.myButton:hover {\n	background:-webkit-gradient(linear, left top, left bottom, color-stop(0.05, #dfdfdf), color-stop(1, #ededed));\n	background:-moz-linear-gradient(top, #dfdfdf 5%, #ededed 100%);\n	background:-webkit-linear-gradient(top, #dfdfdf 5%, #ededed 100%);\n	background:-o-linear-gradient(top, #dfdfdf 5%, #ededed 100%);\n	background:-ms-linear-gradient(top, #dfdfdf 5%, #ededed 100%);\n	background:linear-gradient(to bottom, #dfdfdf 5%, #ededed 100%);\n	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#dfdfdf', endColorstr='#ededed',GradientType=0);\n	background-color:#dfdfdf;\n}\n.myButton:active {\n	position:relative;\n	top:1px;\n}",
 			"file": "src/staticresources/questionscss.resource",
+			"file_size": 4274,
+			"file_write_time": 130686669600000000,
 			"settings":
 			{
-				"buffer_size": 4274,
+				"buffer_size": 4275,
 				"line_ending": "Unix"
 			}
 		},
@@ -298,8 +293,8 @@
 	],
 	"file_history":
 	[
-		"/Users/sastol/Desktop/respaldoShowQuestions.html",
 		"/Users/sastol/Library/Application Support/Sublime Text 3/Packages/User/mavensmate.sublime-settings",
+		"/Users/sastol/Desktop/respaldoShowQuestions.html",
 		"/Users/sastol/Documents/workspace/devtest/src/pages/Questions.page",
 		"/Users/sastol/Documents/workspace/devtest/src/pages/NewQuestion.page",
 		"/Users/sastol/Documents/workspace/devtest/src/classes/testJson.cls",
@@ -331,6 +326,27 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			".itemP",
+			"itemP",
+			"errorhandler",
+			"error",
+			"new",
+			"close",
+			"clean",
+			"close",
+			"checkExistCorrect",
+			"add",
+			"          \n",
+			"new",
+			"checkExistCorrect",
+			"save",
+			"global.question",
+			"questionToEdit",
+			"close",
+			"questionToEdit",
+			"close",
+			"back",
+			"cancel",
 			"save",
 			"add",
 			"global.AdeleteIds",
@@ -375,7 +391,7 @@
 	"groups":
 	[
 		{
-			"selected": 1,
+			"selected": 3,
 			"sheets":
 			[
 				{
@@ -384,15 +400,15 @@
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 15139,
+						"buffer_size": 17719,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								5343,
-								5343
+								10486,
+								10486
 							]
 						],
 						"settings":
@@ -402,43 +418,14 @@
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 1901.0,
+						"translation.y": 4403.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 1,
+					"stack_index": 4,
 					"type": "text"
 				},
 				{
 					"buffer": 1,
-					"file": "/Users/sastol/Library/Application Support/Sublime Text 3/Packages/User/mavensmate.sublime-settings",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 9259,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								0,
-								0
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/JavaScript/JSON.tmLanguage",
-							"translate_tabs_to_spaces": false
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 0,
-					"type": "text"
-				},
-				{
-					"buffer": 2,
 					"file": "src/classes/ShowQuestionsController.cls",
 					"semi_transient": false,
 					"settings":
@@ -459,15 +446,15 @@
 							"syntax": "Packages/MavensMate/sublime/lang/Apex.tmLanguage",
 							"translate_tabs_to_spaces": false
 						},
-						"translation.x": 0.0,
-						"translation.y": 28.0,
+						"translation.x": -0.0,
+						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 2,
+					"stack_index": 3,
 					"type": "text"
 				},
 				{
-					"buffer": 3,
+					"buffer": 2,
 					"file": "src/pages/Questions.page",
 					"semi_transient": false,
 					"settings":
@@ -492,11 +479,11 @@
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 3,
+					"stack_index": 5,
 					"type": "text"
 				},
 				{
-					"buffer": 4,
+					"buffer": 3,
 					"file": "src/classes/QuestionsController.cls",
 					"semi_transient": false,
 					"settings":
@@ -517,28 +504,28 @@
 							"syntax": "Packages/MavensMate/sublime/lang/Apex.tmLanguage",
 							"translate_tabs_to_spaces": false
 						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
+						"translation.x": -0.0,
+						"translation.y": 1776.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 6,
+					"stack_index": 0,
 					"type": "text"
 				},
 				{
-					"buffer": 5,
+					"buffer": 4,
 					"file": "src/staticresources/questionscss.resource",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 4274,
+						"buffer_size": 4275,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								3489,
-								3489
+								109,
+								109
 							]
 						],
 						"settings":
@@ -550,11 +537,11 @@
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 4,
+					"stack_index": 2,
 					"type": "text"
 				},
 				{
-					"buffer": 6,
+					"buffer": 5,
 					"file": "/Users/sastol/Desktop/proy401/init.html",
 					"semi_transient": false,
 					"settings":
@@ -576,10 +563,10 @@
 							"translate_tabs_to_spaces": false
 						},
 						"translation.x": 0.0,
-						"translation.y": 0.0,
+						"translation.y": 15.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 5,
+					"stack_index": 1,
 					"type": "text"
 				}
 			]

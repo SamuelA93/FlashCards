@@ -36,14 +36,15 @@
 			font-style: normal;
 		}
 		.itemP{
-			background-color: antiquewhite;
+			/*background-color: antiquewhite;
 			border-radius: 8px;
 			height: 150px;
 			margin: 10px 0px 5px 10px;
-			padding: 19px;
-			cursor: default;
+			padding: 19px;*/
+			cursor: pointer;
+      margin-bottom: 10px;
 		}
-		.itemP:hover{background-color: rgb(249, 245, 241);}
+		.qstyle:hover{background-color: rgb(249, 245, 241);}
 		.edit{
 			margin-top: 13%;
 			display: none;		}
@@ -51,6 +52,12 @@
     .delete:hover{
         color: rgb(18, 82, 182);
     }
+    .qstyle{
+  padding: 14px;
+  background: antiquewhite;
+  border-radius: 7px;
+  height: 100px;
+}
 	</style>
 
 <div id="myModal" class="modal fade">
@@ -79,11 +86,15 @@
 	<div class="container" >
 		<div class="row" style="margin-top:20%" id="Search">
 
-			<div class="col-xs-8 col-xs-offset-2 col-sm-6  col-sm-offset-3  col-md-4  col-md-offset-4 col-lg-4 col-lg-offset-4 ">
+			<div class="col-xs-7  col-sm-6  col-sm-offset-3  col-md-4  col-md-offset-4 col-lg-4 col-lg-offset-4 ">
 				<input type="text" name="question" id="inputQuestion" class="form-control" placeholder="Search....">
 							
 				</input>
+
 			</div>
+      <div class="col-xs-4  col-sm-2  col-md-1   col-lg-1  ">
+        <a id="new" class="btn btn-primary " href="#" role="button">New Questiom +</a>
+      </div>
 		</div>
 		<div class="row" id="Questions" >
 			
@@ -143,12 +154,9 @@
     global.indexOptionEdit = null;
     global.deleteItemFromAnswers = [];
     global.AdeleteIds = [];
-  	global.handleError = new Map();
-  	global.handleError.set('AtLeastOneRightA',false);
-    global.handleError.set('AtLeastOption',false);
-  	global.handleError.set('NotEmptyOption',false);
-    global.handleError.set('NotEmptyOption',false);
   	//     new schema 
+    global.errorHandler = false;
+    global.messageError = '';
   	global.question 	  ={};
   	global.listAnsewers =[];
   	global.listOptions  =[];
@@ -210,7 +218,7 @@
 
   		global.save = function (){
   			var varJson ='';
-  			if(global.handleError.get('AtLeastOneRightA')){
+  			if(!global.errorHandler){
   					Visualforce.remoting.Manager.invokeAction(
 				        '{!$RemoteAction.ShowQuestionsController.saveQuestion}',
 				        global.question,global.listAnsewers, global.AdeleteIds,
@@ -221,24 +229,78 @@
 				        }, 
 				        {escape: true}
 		    		);
-  			}
+  			}else{
+
+        }
   		}
 
       /////////////////////////////  event save
   		$(document).on('click','#save',function(){
   			global.save();
   		});
+
+      global.util.checkErrors = function(){
+          global.errorHandler =  global.util.checkNotExistQuestion();
+          if(global.errorHandler){
+            global.messageError = 'You must add a question.';
+          }else{
+              global.errorHandler =  global.util.checkNotExistOptions();
+              if (global.errorHandler) {
+                  global.messageError = 'You must add some options.';
+              }else{
+                  global.errorHandler =  global.util.checkExistEmptyOption();
+                  if (global.errorHandler) {
+                      global.messageError = 'You can\'t leave an option in blank.';
+                  }else{
+                      global.errorHandler =  global.util.checkNotExistCorrect();
+                      if (global.errorHandler) {
+                          global.messageError = 'You must select at least one correct option.';
+                      }else{
+
+                      }; // exist correct answer ?
+                  }; // exist an empty  option ?
+              }; // exist options?
+          } // exist empty question ?
+          $('#alertm').empty();
+          if(global.errorHandler){
+            $('#alertm').attr('style','color:orange');
+            $('#alertm').append(global.messageError);
+            $('#save').attr('disabled',true);
+          }else{
+            $('#save').attr('disabled',false);
+          }
+          
+      }
       /////////////////////  check if doesn't exist correct answer
-      global.util.checkExistCorrect = function(){
+      global.util.checkNotExistCorrect = function(){
         if($('input:checked').length ==0){
-          $('#alertm').empty();
-          $('#alertm').attr('style','color:orange');
-          $('#alertm').append('At least one option must be correct.');
-          global.handleError.set('AtLeastOneRightA',false);
+          return true;
         }else{
-          $('#alertm').empty();
-          global.handleError.set('AtLeastOneRightA',true);
+          return false;
         }
+      }
+      global.util.checkNotExistQuestion = function(){
+          if($('#questionInput').val() ===''){
+            return true;
+          }else{
+            return false;
+          }
+      }
+      global.util.checkNotExistOptions = function(){
+          if($('.optionEdit').length === 0){
+            return true;
+          }else{
+            return false;
+          }
+      }
+      global.util.checkExistEmptyOption = function(){
+        var r = false;
+        $('.optionEdit').each(function(index,elem){
+            if(elem.value === ''){
+              r = true;
+            }
+        });
+        return r;
       }
       ////////////////////////////  add new option
       $(document).on('click','#addField',function(){
@@ -247,15 +309,15 @@
         auxA.option = new optionSelected('NO_'+global.countNewOptions,'','New');
         global.listAnsewers.push(auxA);
         auxA=null;
-        global.util.checkExistCorrect();
         global.util.reloadOptionList(global.listAnsewers);
+        global.util.checkErrors();
 
       });
 
   		global.ShowList = function(){
   			var itemsHTML =  $();
   			$(global.questionsFound).each(function(index,elem){
-  				itemsHTML = itemsHTML.add('<div id="'+index+'" class="col-xs-5 col-sm-4 col-md-3 col-lg-3 itemP" ><div class=""><span >'+elem.Question__c+'</span></div></div>');
+  				itemsHTML = itemsHTML.add('<div id="'+index+'" class="col-xs-12 col-sm-6 col-md-3 col-lg-3 itemP" ><div class="qstyle"><span >'+elem.Question__c+'</span></div></div>');
 					
   			});
   			$('#Questions').empty();
@@ -281,13 +343,12 @@
   					console.log(elem);
   				}
   			});
-
+        global.util.checkErrors();
 	  	});
       
       //////////////////////////  event Correct? checkbox
   		$( document ).on('change','.correctEdit',function(){
         console.log('################ input correct checkbox');
-	  		global.util.checkExistCorrect();
 	  		var scope = this;
 	  		global.listAnsewers.forEach(function(elem,index,all){
           console.log(elem.ida +'  '+$(scope).attr('id'));
@@ -299,18 +360,21 @@
             console.log(elem);
 	  			}
 	  	  });
+        global.util.checkErrors();
       }); 
-	  		// ------>	global.questionToEdit.answers.get($(this).closest('.row').attr('id')).isCorrect = $(this).is(":checked");
 	  		
 	    $( document ).on('input','#questionInput',function(){
 	  		global.question.q = $(this).val().trim();
-	  		global.question.operation = 'Update';
+        if(global.question.opwration !== 'New'){
+            global.question.operation = 'Update';
+        }
 	  		console.log(global.question);
+        global.util.checkErrors();
 	  	});
 
       
 
-  		///////////////////////////////////// event when select question for edit 
+  		/////////// event when select question for edit 
 
   		$( document ).on( "click", '.itemP', function() {
   				
@@ -318,7 +382,7 @@
         console.log(global.questionsFound[this.id]);
         global.indexOptionEdit = this.id;
 
-  			////////////////////////////////// instantiate question object     global.listAnsewers =[];
+  			///////////// instantiate question object     global.listAnsewers =[];
 
   			global.question = new questionSelected(global.questionsFound[global.indexOptionEdit].Id,global.questionsFound[global.indexOptionEdit].Question__c,'Nothing');
 
@@ -329,20 +393,46 @@
             auxA=null;
         });
 
-  			//////////////////////////////////  set view div's
+  			///// set view div's
 
   			$('#Search').hide();
   			$('#Questions').hide();
   			$('#Edit').show();
 
-        //////////////////////////////////  set input field question
+        /////////////  set input field question
 
   			$('#questionInput').val(global.question.q);
         console.log(global.listAnsewers);
         global.util.reloadOptionList();
   		});
 
-      ///////////////////////////////////  reload
+      ///////////////////////  event on new question
+      $( document ).on( "click", '#new', function() {
+          
+          global.question = new questionSelected('NQ','','New');
+          global.reset();
+          $('#Search').hide();
+          $('#Questions').hide();
+          $('#Edit').show();
+          $('#save').attr('disabled',true);
+          $('#questionInput').val(global.question.q);
+          global.util.reloadOptionList();
+         global.util.checkErrors();
+      });
+
+      //////////// reset variables
+      global.reset = function (){
+          global.question     ={};
+          global.listAnsewers =[];
+          global.listOptions  =[];
+          global.errorHandler = false;
+          global.messageError = '';
+          $('#save').attr('disabled',false);
+          $('#alertm').empty();
+          
+      }
+
+      ///////////  reload
       global.util.reloadOptionList = function(){
         itemsHTML = $();
         $(global.listAnsewers).each(function(index,elem){
@@ -364,12 +454,12 @@
         $('#fieldInput').append(itemsHTML);
       }
 
+      ////////////////////////////////// event close edit view 
   		$( document ).on( "click", '#closeEdit', function() {
-  			global.questionToEdit = null;
   			$('#Search').show();
   			$('#Questions').show();
   			$('#Edit').hide();
-
+        global.reset();
   		});
       $( document ).on( "click", '.delete', function() {
         console.log('##################### .delete');
@@ -387,7 +477,8 @@
             }
         });
       });
-      
+
+    ///////////////////////////// event confirm delete 
     $( document ).on( "click", '#confirmDelate', function() {
       console.log('##################### #confirmDelate');
       console.log(global.deleteItemFromAnswers[0]+' /// '+global.deleteItemFromAnswers[1]);
@@ -397,23 +488,19 @@
       global.listAnsewers.splice(global.deleteItemFromAnswers[0],1);
       global.deleteItemFromAnswers=[];
       global.util.reloadOptionList();
-      global.util.checkExistCorrect();
       $("#myModal").modal('hide');
       console.log(' delete '+global.AdeleteIds);
+      global.util.checkErrors();
     });
 
-  		global.init = function(){
-  			//global.util.getQuestions();
-  			//setTimeout(function() {
-	  			if(global.questions.length>0){
-	  				global.util.find(global.word);
-	  				global.ShowList();
-	  			}
-  			//}, 1000);
-  		}
-      global.util.getQuestions();
-  		
-      
+  	global.init = function(){
+	  	if(global.questions.length>0){
+	  		global.util.find(global.word);
+	  		global.ShowList();
+
+	  	}
+  	}
+    global.util.getQuestions();
     });
   </script>
 
